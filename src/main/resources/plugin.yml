@@ -1,0 +1,20 @@
+name: ${project.name}
+version: ${project.version}
+description: Simple home management.
+
+author: Jim Flaten
+website: http://www.flaten.it/
+
+main: ${main.class}
+database: true
+
+permissions:
+  homes.use:
+    description: Gives access to Sherlock Homes.
+    default: true
+
+commands:
+  home:
+    description: Manages homes.
+    usage: /<command> [set/list/goto/remove] [name]
+    permission: homes.use
