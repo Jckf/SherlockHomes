@@ -10,6 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,11 @@ public class Homes extends JavaPlugin {
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
 
-        this.installDDL();
+        try {
+            this.getDatabase().find(Home.class).findRowCount();
+        } catch (PersistenceException exception) {
+            this.installDDL();
+        }
     }
 
     @Override
